@@ -22,15 +22,9 @@ app.controller("todoController", function ($scope, $filter) {
         task.Done = true;
     }
 
-    $scope.MarkNotDone = function (task) {
-        task.Done = false;
-    }
-
     $scope.RemoveTask = function (task) {
         $scope.Todos.splice($scope.Todos.indexOf(task), 1);
     }
-
-
 
     $scope.ClearCompletedTask = function (Todos) {
         var completedTasks = $filter('filter')(Todos, {
@@ -53,3 +47,17 @@ app.controller("todoController", function ($scope, $filter) {
 });
 
 
+app.directive('ngEnter', function () {
+    return function (scope, element, attrs) {
+        element.bind("keydown keypress", function (event) {
+            if (event.which === 13) {
+                scope.$apply(function () {
+                    scope.$eval(attrs.ngEnter, {
+                        'event': event
+                    });
+                });
+                event.preventDefault();
+            }
+        });
+    };
+});
