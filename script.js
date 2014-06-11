@@ -35,7 +35,7 @@ app.controller("todoController", function($scope, $filter){
     $scope.Todos.splice($scope.Todos.indexOf(task), 1);
   }
   
-  $scope.Filter
+  
   
   $scope.ClearCompletedTask = function(Todos)
   {
