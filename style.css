@@ -1,0 +1,8 @@
+/* Styles go here */
+.done{
+  text-decoration:line-through;
+}
+
+.SameTaskName {
+ background-color:#f65;
+}

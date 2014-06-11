@@ -1,4 +1,0 @@
-Angular-TodoList
-================
-
-TODO list

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <script data-require="angular.js@*" data-semver="1.3.0-beta.5" src="https://code.angularjs.org/1.3.0-beta.5/angular.js"></script>
+    <link data-require="bootstrap-css@*" data-semver="3.1.1" rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.css" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js"></script>
+  </head>
+
+  <body ng-app="todoApp">
+    <div class="container-fluid" ng-controller="todoController">
+      <div class="row">
+        <div class="col-xs-3"></div>
+        <div class="col-xs-6">
+        <div class="page-header">
+          <h1>My TODO List<small</h1>
+        </div>
+        
+          <ul class="nav nav-pills">
+              <li ng-class="{active: !Search.Done}"><a ng-click="Search = {}" ng-model="Search.Done">All</a></li>
+              <li ng-class="{active: Search.Done}"><a ng-click="Search.Done = true" ng-model="Search.Done">Completed</a></li>
+          </ul>
+        
+          <div class="input-group">
+            <input type="text" class="form-control" ng-model="task.Name"  />
+            <span class="input-group-btn">
+              <button class="btn btn-info" type="button" ng-click="AddTask(task)" >Add task!</button>
+            </span>
+          </div>
+          
+          <ul class="list-group"  >
+            <li class="list-group-item" ng-repeat="todo in Todos | filter: Search">
+              <span class="badge" ng-click="MarkDone(todo)" ng-if="todo.Done == false">Done</span>
+              <a ng-click="RemoveTask(todo)"><span class="glyphicon glyphicon-remove"></span></a>
+              <span ng-class="{done:todo.Done}">{{todo.Name}}</span>
+              
+            </li>
+          </ul>
+          <span class="label label-danger">{{TaskRemaining}} tasks remaining</span>
+          <span ng-if="TaskCompleted > 0" class="label label-success" ng-click="ClearCompletedTask(Todos)">{{TaskCompleted}} tasks completed - clear</span>
+        
+          
+          
+        </div>
+      </div>
+      <div class="col-xs-3"></div>
+    </div>
+  </body>
+
+</html>
